@@ -32,6 +32,11 @@ return {
                 "<cmd>Gitsigns undo_stage_hunk<cr>",
                 desc = "Undo Stage Hunk"
             },
+            {
+                "<leader>hp",
+                "<cmd>Gitsigns preview_hunk_inline<cr>",
+                desc = "Preveiw Hunk Inline"
+            },
         },
     },
 }
