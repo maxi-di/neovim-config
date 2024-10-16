@@ -1,0 +1,82 @@
+{
+    "info": {
+        "prefix": "info",
+        "body": ["log.info(${1:})"]
+    },
+    "class": {
+        "prefix": "class",
+        "body": [
+            "local ${1:} = {}",
+            "",
+            "function ${1:}:new()",
+            "    local obj = {}",
+            "",
+            "    setmetatable(obj, self)",
+            "    self.__index = self",
+            "    return obj",
+            "end"
+        ],
+        "description": "class table for lua"
+    },
+    "class_ex": {
+        "prefix": "class_ex",
+        "body": [
+            "---@class ${1:}",
+            "local ${1:} = {}",
+            "",
+            "---@return ${1:}",
+            "function ${1:}:init()",
+            "    self.priv = {}",
+            "    return self",
+            "end",
+            "",
+            "---**You must use init function after new() -> new():init(...)**",
+            "---@return ${1:}",
+            "function ${1:}:new()",
+            "    local obj = {}",
+            "    setmetatable(obj, self)",
+            "    self.__index = self",
+            "    return obj",
+            "end"
+        ],
+        "description": "class table for lua"
+    },
+    "getter_setter": {
+        "prefix": "get_set",
+        "body": [
+            "---@param ${2} any",
+            "function ${1}:set_${2}(${2}) self.${2} = ${2} end",
+            "function ${1}:get_${2}() return self.${2} end"
+        ]
+    },
+    "parser_selector_create": {
+        "prefix": "parser_selector_create",
+        "body": [
+            "---@param client_context client_context",
+            "parsers.SELECTOR_create.${1} = function(client_context, sett, Parent_id, id, asq_id, asc_SC_id)",
+            "    log.trace(\"parsers.SELECTOR_create.${1}\")",
+            "    local self_item = sett[Parent_id].subitem[id]",
+            "",
+            "    self_item.data.star_show = false",
+            "    self_item.data.current_id = 1",
+            "    self_item.data.content = { --",
+            "        {name = \"Item 1\"},",
+            "        {name = \"Item 2\"},",
+            "        {name = \"Item 3\"},",
+            "    }",
+            "end"
+        ]
+    },
+    "parser_image_create": {
+        "prefix": "parser_image_create",
+        "body": [
+            "---@param client_context client_context",
+            "parsers.IMAGE_create.${1} = function(client_context, sett, Parent_id, id)",
+            "    log.trace(\"parsers.IMAGE_create.${1}\")",
+            "    local self_item = sett[Parent_id].subitem[id]",
+            "",
+            "    self_item.data.Image_int_Num = INT_IMAGE.ON",
+            "end"
+        ]
+    }
+}
