@@ -5,5 +5,5 @@ return {
             {"<leader>do", "<cmd>DiffviewOpen<cr>",  desc = "DiffviewOpen"},
             {"<leader>dc", "<cmd>DiffviewClose<cr>", desc = "DiffviewClose"},
         }
-    },
+    }
 }
