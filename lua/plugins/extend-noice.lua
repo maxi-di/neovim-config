@@ -2,7 +2,22 @@ return {
     "folke/noice.nvim",
     opts = {
         presets = {
-            command_pallete = false,
-        }
+            bottom_search   = false,
+            command_palette = {
+                views = {
+                    cmdline_popup = {
+                        position = {
+                            row = "50%",
+                            col = "50%",
+                        },
+                        size = {
+                            min_width = 60,
+                            width     = "auto",
+                            height    = "auto",
+                        },
+                    },
+                },
+            },
+        },
     }
 }
