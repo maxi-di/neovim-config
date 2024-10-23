@@ -9,6 +9,11 @@ return {
         "ibhagwan/fzf-lua",              -- optional
         "echasnovski/mini.pick",         -- optional
     },
+    opts = {
+        integrations = {
+            diffview = true,
+        },
+    },
     keys = {
         {"<A-g>",     "<cmd>Neogit<cr>", desc = "Open neo-git"},
         {"<leader>G", "<cmd>Neogit<cr>", desc = "Open neo-git"},

@@ -19,10 +19,6 @@ return {
         'romainl/Apprentice',
         enabled = true,
     },
-    {
-        'rebelot/kanagawa.nvim',
-        enabled = true,
-    },
 
     -- Configure LazyVim to load colorscheme
     {
