@@ -1,7 +1,16 @@
 return {
     {
         'morhetz/gruvbox',
-        enabled = true,
+        enabled = false,
+        config = function()
+            vim.g.gruvbox_contrast_dark = "soft"
+        end,
+    },
+    {
+        'ellisonleao/gruvbox.nvim',
+        opts = {
+            contrast = "soft",
+        }
     },
     {
         'navarasu/onedark.nvim',
@@ -24,7 +33,7 @@ return {
     {
         "LazyVim/LazyVim",
         opts = {
-            colorscheme = "kanagawa",
+            colorscheme = "gruvbox",
         },
     },
 }
