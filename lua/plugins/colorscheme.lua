@@ -8,6 +8,7 @@ return {
     },
     {
         'ellisonleao/gruvbox.nvim',
+        enabled = true,
         opts = {
             contrast = "soft",
         }

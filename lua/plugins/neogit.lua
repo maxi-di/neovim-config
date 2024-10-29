@@ -13,6 +13,7 @@ return {
         integrations = {
             diffview = true,
         },
+        graph_style = "unicode",
     },
     keys = {
         {"<A-g>",     "<cmd>Neogit<cr>", desc = "Open neo-git"},
