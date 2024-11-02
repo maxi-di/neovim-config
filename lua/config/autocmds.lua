@@ -19,3 +19,11 @@ vim.api.nvim_create_autocmd({"BufReadPost"}, {
         -- vim.notify(vim.inspect(result))
     end,
 })
+
+-- vim.api.nvim_create_autocmd({"FileType"}, {
+--     group    = augroup("cmake_custom_indent"),
+--     pattern  = "cmake",
+--     callback = function(event)
+--         vim.opt_local.shiftwidth = 2
+--     end,
+-- })

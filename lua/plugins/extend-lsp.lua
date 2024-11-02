@@ -37,8 +37,27 @@ return {
                             fname
                         ) or require("lspconfig.util").find_git_ancestor(fname)
                     end,
-                }
+                },
+                neocmake = {
+                    root_dir = function(fname)
+                        return require("lspconfig.util").root_pattern(
+                            ".root"
+                        )(fname) or require("lspconfig.util").find_git_ancestor(fname)
+                    end,
+                },
             }
         }
-    }
+    },
+    {
+        "neovim/nvim-lspconfig",
+        opts = function()
+            if LazyVim.pick.want() ~= "telescope" then
+                return
+            end
+            local Keys = require("lazyvim.plugins.lsp.keymaps").get()
+            vim.list_extend(Keys, {
+                {"gd", function() require("telescope.builtin").lsp_definitions({reuse_win = false}) end, desc = "Goto Definition", has = "definition"},
+            })
+        end,
+    },
 }

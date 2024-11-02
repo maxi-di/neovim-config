@@ -1,7 +1,15 @@
 {
+    "inspect": {
+        "prefix": "inspect",
+        "body": [
+            "log.${1|info,trace,debug,warning,error,fatal|}(string.format('${2:description}: %s', inspect(${3:table}, {newline = '', indent = ''})))"
+        ]
+    },
     "info": {
         "prefix": "info",
-        "body": ["log.info(${1:})"]
+        "body": [
+            "log.info(${1:})"
+        ]
     },
     "class": {
         "prefix": "class",
