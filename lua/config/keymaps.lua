@@ -8,3 +8,5 @@ vim.keymap.set("n", "<leader>x,", "<cmd>Trouble telescope<cr>", {desc = "Trouble
 vim.keymap.set("n", "<leader>C", "<cmd>desc<cr>", {desc = "Close tab"})
 
 vim.keymap.set("n", "<leader>p", '"_ciw<esc>"*p', {desc = "Paste in word last yank"})
+
+vim.keymap.set("n", "<F7>", '<cmd>CMakeBuild<cr>', {desc = "Cmake build"})
