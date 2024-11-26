@@ -15,3 +15,5 @@ vim.keymap.set("n", "<leader>sp",
     function() vim.notify("cwd: " .. vim.loop.cwd()) end,
     {desc = "Show current working directory"}
 )
+
+vim.keymap.set("n", "<leader>g<C-b>", "<cmd>Telescope git_branches<CR>", {desc = "Branches"})
