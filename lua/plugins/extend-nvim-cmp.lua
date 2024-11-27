@@ -3,9 +3,17 @@ return {
         "hrsh7th/nvim-cmp",
         opts = function(_, opts)
             local cmp = require("cmp")
+            if not LazyVim.cmp.actions.confirm then
+                LazyVim.cmp.actions.confirm = function()
+                    return cmp.confirm({select = true})
+                end
+            end
+
             opts.mapping = vim.tbl_extend("force", opts.mapping,
                 {
-                    ["<Tab>"] = cmp.mapping.confirm({select = true}),
+                    ["<Tab>"] = function(fallback)
+                        return LazyVim.cmp.map({"confirm", "snippet_forward", "ai_accept"}, fallback)()
+                    end,
                     ["<CR>"] = function(fallback)
                         cmp.abort()
                         fallback()
