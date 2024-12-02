@@ -8,7 +8,7 @@ end
 
 vim.api.nvim_create_autocmd({"BufReadPost"}, {
     group    = augroup("koi8r"),
-    pattern  = {"*.lua", "*.c"},
+    pattern  = {"*"},
     callback = function(event)
         local s = vim.api.nvim_buf_get_lines(event.buf, 0, 1, true)[1]
         if s == nil then return end
@@ -16,6 +16,6 @@ vim.api.nvim_create_autocmd({"BufReadPost"}, {
         if encoding then
             vim.cmd(string.format(":e ++enc=%s", encoding))
         end
-        -- vim.notify(vim.inspect(result))
+        -- vim.notify(s)
     end,
 })
