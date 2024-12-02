@@ -25,7 +25,7 @@ return {
 
             -- Add components to right sections
             ins_right {
-                "o:encoding", -- option component same as &encoding in viml
+                "encoding", -- option component same as &encoding in viml
                 cond = conditions.hide_in_width,
             }
 
