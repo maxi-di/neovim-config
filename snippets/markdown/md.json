@@ -1,0 +1,11 @@
+{
+    "CodeBlock": {
+        "prefix": "CC",
+        "body": [
+            "```${1|bash,lua,go,sh|}",
+            "${2}",
+            "```"
+        ],
+        "description": "block of some code"
+    }
+}
