@@ -1,0 +1,33 @@
+{
+    "tmux-session": {
+        "prefix": "tmux-session",
+        "body": [
+            "#!/bin/sh",
+            "SESSION=${1:session_name}",
+            "SESSIONEXISTS=\\$(tmux list-sessions | grep \\$SESSION)",
+            "",
+            "# Only create tmux session if it doesn't already exist",
+            "if [ \"\\$SESSIONEXISTS\" = \"\" ]; then",
+            "    tmux new-session -d -s \\$SESSION",
+            "",
+            "    tmux rename-window -t \\$SESSION '${2:window_1_name}'",
+            "    tmux send-keys -t \\$SESSION:'${2:window_1_name}' 'ls' C-m",
+            "    tmux split-window -v -p 90 -t \\$SESSION:'${2:window_1_name}'",
+            "    tmux send-keys -t \\$SESSION:'${2:window_1_name}' 'ls' C-m",
+            "",
+            "    tmux new-window -t \\$SESSION -n '${3:window_2_name}'",
+            "    tmux send-keys -t \\$SESSION:'${3:window_2_name}' 'ls' C-m",
+            "",
+            "    tmux select-window -t \\$SESSION:'${2:window_1_name}'",
+            "fi",
+            "",
+            "# Attach Session, on the Main window",
+            "if [ -z \"\\$TMUX\" ]; then",
+            "    tmux attach-session -t \\$SESSION",
+            "else",
+            "    tmux switch-client -t \\$SESSION",
+            "fi"
+        ],
+        "description": "template for tmux session auto-create"
+    }
+}

@@ -19,3 +19,12 @@ vim.api.nvim_create_autocmd({"BufReadPost"}, {
         -- vim.notify(s)
     end,
 })
+
+vim.api.nvim_create_autocmd({"BufRead"}, {
+    group    = augroup("json_to_jsonc"),
+    pattern  = {"launch.json"},
+    ---@diagnostic disable-next-line: unused-local
+    callback = function(event)
+        vim.cmd(string.format(":set filetype=jsonc"))
+    end,
+})

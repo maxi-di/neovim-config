@@ -1,8 +1,9 @@
 return {
-    {import = "lazyvim.plugins.extras.editor.harpoon2"},
+    -- {import = "lazyvim.plugins.extras.editor.harpoon2"},
     {
 
         "ThePrimeagen/harpoon",
+        enabled = false,
         keys = function()
             local keys = {
                 {
