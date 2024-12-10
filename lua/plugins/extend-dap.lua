@@ -15,6 +15,17 @@ return {
                     table.insert(opts.ensure_installed, "cortex-debug")
                 end,
             },
+            {
+                "rcarriga/nvim-dap-ui",
+                opts = function(_, opts)
+                    vim.tbl_extend("force", opts, {
+                        element_mappings = {
+                            open = "<CR>",
+                            expand = "o",
+                        }
+                    })
+                end
+            },
         },
         config = function(_, opts)
             require("dap-cortex-debug").setup {
