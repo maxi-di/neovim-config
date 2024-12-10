@@ -48,6 +48,11 @@ return {
                             ".root"
                         )(fname) or require("lspconfig.util").find_git_ancestor(fname)
                     end,
+                    init_options = {
+                        lint = {
+                            enable = false,
+                        }
+                    },
                 },
             }
         }
