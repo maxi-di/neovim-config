@@ -77,6 +77,70 @@ return {
         },
 
         opts = function(_, opts)
+            local osys = require("cmake-tools.osys")
+
+            local function augroup(name)
+                return vim.api.nvim_create_augroup("max_" .. name, {clear = true})
+            end
+
+            vim.api.nvim_create_user_command("CMakeDeleteBuildDir", function()
+                if not osys.islinux then
+                    vim.notify("Delete cmake build dir not supported\non Not Linux")
+                    return
+                end
+
+                local build_directory = (require("cmake-tools").get_build_directory() or {}).filename
+
+                if build_directory and build_directory ~= "" then
+                    vim.ui.select({"yes", "no"}, {
+                        prompt = "Delete cmake build dir:\n" .. build_directory,
+                        prompt_item = function(item)
+                            return "i'd like to select " .. item
+                        end
+                    }, function(choice)
+                        if choice == "yes" then
+                            vim.notify("Delete cmake build dir:\n" .. build_directory)
+                            os.execute("rm -rf " .. build_directory)
+                        end
+                    end)
+                end
+            end, {
+                nargs = 0,
+                desc = "Delete Cmake Build Dir"
+            })
+
+            vim.api.nvim_create_user_command("CMakeDeleteCacheFile", function()
+                if not osys.islinux then
+                    vim.notify("Delete cmake cache file not supported\n on Not Linux")
+                    return
+                end
+                local cache_directory = vim.fn.expand("~") .. "/.cache/cmake_tools_nvim/"
+                local current_path = vim.loop.cwd() or ""
+                local clean_path = current_path:gsub("/", "")
+                clean_path = clean_path:gsub("\\", "")
+                clean_path = clean_path:gsub(":", "")
+
+                cache_directory = cache_directory .. clean_path .. ".lua"
+
+                if cache_directory and cache_directory ~= "" then
+                    vim.ui.select({"yes", "no"}, {
+                        prompt = "Delete cmake cache file:\n" .. clean_path,
+                        prompt_item = function(item)
+                            return "i'd like to select " .. item
+                        end
+                    }, function(choice)
+                        if choice == "yes" then
+                            vim.notify("Delete cmake cache file:\n" .. cache_directory)
+                            os.execute("rm -rf " .. cache_directory)
+                        end
+                    end)
+                end
+            end, {
+                nargs = 0,
+                desc = "Delete Cmake Cache File"
+            })
+
+
             vim.keymap.set("n", "<leader>zsb", '<cmd>CMakeSelectBuildType<cr>', {desc = "Cmake select build type"})
             vim.keymap.set("n", "<leader>zb", '<cmd>CMakeBuild<cr>', {desc = "Cmake build"})
             vim.keymap.set("n", "<leader>zg", '<cmd>CMakeGenerate<cr>', {desc = "Cmake generate"})
@@ -84,12 +148,9 @@ return {
             vim.keymap.set("n", "<leader>zor", '<cmd>CMakeOpenRunner<cr>', {desc = "Cmake open runner"})
             vim.keymap.set("n", "<leader>zr", function() require("lazy").reload({plugins = {"cmake-tools.nvim"}}) end,
                 {desc = "Cmake reload plugin"})
+            vim.keymap.set("n", "<leader>zD", '<cmd>CMakeDeleteBuildDir<cr>', {desc = "Cmake delete cache"})
             vim.keymap.set("n", "<F7>", '<cmd>CMakeBuild<cr>', {desc = "Cmake build"})
 
-
-            local function augroup(name)
-                return vim.api.nvim_create_augroup("max_" .. name, {clear = true})
-            end
 
             -- событие от плагина `neovim-session-manager.nvim`
             vim.api.nvim_create_autocmd({"User"}, {
