@@ -84,6 +84,8 @@ return {
             vim.keymap.set("n", "<leader>zor", '<cmd>CMakeOpenRunner<cr>', {desc = "Cmake open runner"})
             vim.keymap.set("n", "<leader>zr", function() require("lazy").reload({plugins = {"cmake-tools.nvim"}}) end,
                 {desc = "Cmake reload plugin"})
+            vim.keymap.set("n", "<F7>", '<cmd>CMakeBuild<cr>', {desc = "Cmake build"})
+
 
             local function augroup(name)
                 return vim.api.nvim_create_augroup("max_" .. name, {clear = true})
