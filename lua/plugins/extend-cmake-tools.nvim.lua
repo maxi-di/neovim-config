@@ -19,6 +19,9 @@ return {
             },
             {
                 "nvim-lualine/lualine.nvim",
+                dependencies = {
+                    "folke/snacks.nvim"
+                },
                 opts = function(_, opts)
 
                     -- you can find the icons from https://github.com/Civitasv/runvim/blob/master/lua/config/icons.lua

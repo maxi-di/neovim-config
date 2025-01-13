@@ -3,6 +3,17 @@ return {
         "stevearc/overseer.nvim",
         dependencies = {
             "akinsho/toggleterm.nvim",
+            {
+                "folke/which-key.nvim",
+                opts = {
+                    defaults = {},
+                    spec = {
+                        {
+                            {"<leader>r", group = "run tasks"},
+                        }
+                    }
+                }
+            },
         },
         opts = function(_, opts)
 

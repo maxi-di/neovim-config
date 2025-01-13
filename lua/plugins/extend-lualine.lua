@@ -1,6 +1,9 @@
 return {
     {
         "nvim-lualine/lualine.nvim",
+        dependecies = {
+            "folke/snacks.nvim",
+        },
         opts = function(_, opts)
 
             -- Credited to [evil_lualine](https://github.com/nvim-lualine/lualine.nvim/blob/master/examples/evil_lualine.lua)

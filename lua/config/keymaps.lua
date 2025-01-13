@@ -15,3 +15,6 @@ vim.keymap.set("n", "<leader>sp",
 )
 
 vim.keymap.set("n", "<leader>g<C-b>", "<cmd>Telescope git_branches<CR>", {desc = "Branches"})
+
+-- vim.keymap.set("n", "<C-d>", "20jzz")
+-- vim.keymap.set("n", "<C-u>", "20kzz")
