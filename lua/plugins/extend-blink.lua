@@ -1,6 +1,7 @@
 return {
     {
         "saghen/blink.cmp",
+        tag = "v0.9.3",
         opts = {
             keymap = {
                 preset = "super-tab",
@@ -8,12 +9,19 @@ return {
             },
             completion = {
                 list = {
-                    selection = {
-                        preselect = true,
-                        auto_insert = true,
-                    }
-                },
-            },
+                    -- for version v0.9.3
+                    selection = "auto_insert",
+                }
+            }
+            -- for newest versions
+            -- completion = {
+            --     list = {
+            --         selection = {
+            --             preselect = true,
+            --             auto_insert = true,
+            --         }
+            --     },
+            -- },
         },
     },
 }
