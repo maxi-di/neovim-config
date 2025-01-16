@@ -41,6 +41,16 @@ return {
                             fname
                         ) or require("lspconfig.util").find_git_ancestor(fname)
                     end,
+                    cmd = {
+                        "clangd",
+                        "--background-index",
+                        "--clang-tidy",
+                        "--header-insertion=iwyu",
+                        "--completion-style=detailed",
+                        "--function-arg-placeholders",
+                        "--fallback-style=llvm",
+                        "--query-driver=/**/*", -- нужно для кросс компилятора, чтобы сам искал инклуды
+                    }
                 },
                 neocmake = {
                     root_dir = function(fname)
