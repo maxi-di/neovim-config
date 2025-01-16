@@ -5,8 +5,12 @@
 local opt = vim.opt
 
 
-opt.shiftwidth       = 4     -- Size of an indent
-opt.tabstop          = 4     -- Number of spaces tabs count for
+opt.shiftwidth = 4 -- Size of an indent
+opt.tabstop    = 4 -- Number of spaces tabs count for
+
+-- чтобы не появлялось окно 'no name' при открытии nvim
+vim.cmd("set nohidden")
+
 
 vim.g.snacks_animate = false
 -- vim.g.lazyvim_blink_main = false
