@@ -12,5 +12,7 @@ opt.tabstop    = 4 -- Number of spaces tabs count for
 vim.cmd("set nohidden")
 
 
+-- плавная прокрутка на <C-d>/<C-u>
 vim.g.snacks_animate = false
--- vim.g.lazyvim_blink_main = false
+
+vim.g.lazyvim_picker = "telescope"
