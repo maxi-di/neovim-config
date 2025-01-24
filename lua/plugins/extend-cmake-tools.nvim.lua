@@ -209,8 +209,12 @@ return {
                 pattern  = "SessionLoadPost",
                 group    = augroup("cmake_reload"),
                 callback = function()
+                    if first then
+                        first = false
+                        return
+                    end
                     if cmake_get_cache_file() then
-                        cmake_reload_plugin(1000)
+                        cmake_reload_plugin(10)
                     end
                 end,
             })
