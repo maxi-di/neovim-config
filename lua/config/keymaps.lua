@@ -14,7 +14,11 @@ vim.keymap.set("n", "<leader>sp",
     {desc = "Show current working directory"}
 )
 
-vim.keymap.set("n", "<leader>g<C-b>", "<cmd>Telescope git_branches<CR>", {desc = "Branches"})
+--- PICKERS
 
--- vim.keymap.set("n", "<C-d>", "20jzz")
--- vim.keymap.set("n", "<C-u>", "20kzz")
+if vim.g.lazyvim_picker == "telescope" then
+    vim.keymap.set("n", "<leader>g<C-b>", "<cmd>Telescope git_branches<CR>", {desc = "Branches"})
+end
+
+vim.keymap.set("n", "<C-p>", LazyVim.pick("files", {root = false}), {desc = "Find Files (cwd)"})
+vim.keymap.set("n", "<leader>s/", LazyVim.pick("live_grep", {search_dirs = {"%:p"}}), {desc = "Find Files (cwd)"})
