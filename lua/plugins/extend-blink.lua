@@ -14,6 +14,10 @@ return {
                     }
                 },
             },
+            enabled = function()
+                -- Отключаем автодополнение для определенного типа файлов
+                return not vim.tbl_contains({"typr"}, vim.bo.filetype)
+            end,
         },
     },
 }
