@@ -30,22 +30,24 @@
         "prefix": "class_ex",
         "body": [
             "---@class ${1:}",
-            "local ${1:} = {}",
+            "local M = {}",
             "",
             "---@return ${1:}",
-            "function ${1:}:init()",
+            "function M:init()",
             "    self.priv = {}",
             "    return self",
             "end",
             "",
             "---**You must use init function after new() -> new():init(...)**",
             "---@return ${1:}",
-            "function ${1:}:new()",
+            "function M:new()",
             "    local obj = {}",
             "    setmetatable(obj, self)",
             "    self.__index = self",
             "    return obj",
-            "end"
+            "end",
+            "",
+            "-- return M"
         ],
         "description": "class table for lua"
     },
@@ -85,6 +87,12 @@
             "",
             "    self_item.data.Image_int_Num = INT_IMAGE.ON",
             "end"
+        ]
+    },
+    "vim_keymap_set": {
+        "prefix": "vim_keymap_set",
+        "body": [
+            "vim.keymap.set('${1|n,i,v,t|}', '<leader>x,', ${2|'<cmd>Trouble telescope<cr>',function() end|}, {desc = '${3:description}'})"
         ]
     }
 }
