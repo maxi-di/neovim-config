@@ -37,3 +37,19 @@ vim.api.nvim_create_autocmd({"BufReadPost"}, {
         vim.cmd(string.format(":set filetype=dockerfile"))
     end,
 })
+
+if LazyVim.has("neo-tree.nvim") then
+    vim.api.nvim_create_autocmd({"TabEnter"}, {
+        pattern  = '*',
+        ---@diagnostic disable-next-line: unused-local
+        callback = function(event)
+            if not package.loaded["neo-tree"] then
+                return
+            end
+            local manager = require("neo-tree.sources.manager")
+            if manager then
+                manager.refresh('filesystem')
+            end
+        end,
+    })
+end
