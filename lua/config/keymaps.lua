@@ -20,5 +20,10 @@ if vim.g.lazyvim_picker == "telescope" then
     vim.keymap.set("n", "<leader>g<C-b>", "<cmd>Telescope git_branches<CR>", {desc = "Branches"})
 end
 
+-- В lazyvim это есть, но почему-то комбинации не срабатывают
+-- пришлось переобъявить здесь
+vim.keymap.set("n", "<leader>si", function() Snacks.picker.icons() end, {desc = "Icons"})
+vim.keymap.set("n", "<leader>su", function() Snacks.picker.undo() end, {desc = "Undotree"})
+
 vim.keymap.set("n", "<C-p>", LazyVim.pick("files", {root = false}), {desc = "Find Files (cwd)"})
 vim.keymap.set("n", "<leader>s/", LazyVim.pick("live_grep", {search_dirs = {"%:p"}}), {desc = "Find Files (cwd)"})

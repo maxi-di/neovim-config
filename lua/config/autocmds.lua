@@ -2,6 +2,8 @@
 -- Default autocmds that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/autocmds.lua
 -- Add any additional autocmds here
 
+---@param name string
+---@return integer
 local function augroup(name)
     return vim.api.nvim_create_augroup("max_" .. name, {clear = true})
 end
@@ -53,3 +55,13 @@ if LazyVim.has("neo-tree.nvim") then
         end,
     })
 end
+
+-- событие от плагина `neovim-session-manager.nvim`
+vim.api.nvim_create_autocmd({"User"}, {
+    pattern  = "SessionLoadPost",
+    group    = augroup("lsp_restart"),
+    callback = function()
+        vim.cmd(":LspRestart")
+        vim.notify("Lsp restarting (on cwd changed)")
+    end,
+})

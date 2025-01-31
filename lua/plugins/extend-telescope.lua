@@ -1,3 +1,7 @@
+if vim.g.lazyvim_picker ~= "telescope" then
+    return {}
+end
+
 return {
     "nvim-telescope/telescope.nvim",
     opts = {
