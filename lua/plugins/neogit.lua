@@ -14,6 +14,12 @@ return {
             diffview = true,
         },
         graph_style = "unicode",
+        mappings = {
+            commit_editor = {
+                ["<m-b>"] = "PrevMessage",
+                ["<m-f>"] = "NextMessage",
+            },
+        }
     },
     keys = {
         {"<A-g>",     "<cmd>Neogit<cr>", desc = "Open neo-git"},
