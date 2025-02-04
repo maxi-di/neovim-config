@@ -19,6 +19,7 @@ return {
                 return not vim.tbl_contains({
                     "typr",
                     "TelescopePrompt",
+                    "snacks_picker_input",
                 }, vim.bo.filetype)
             end,
         },
