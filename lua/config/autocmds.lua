@@ -65,3 +65,11 @@ vim.api.nvim_create_autocmd({"User"}, {
         vim.notify("Lsp restarting (on cwd changed)")
     end,
 })
+
+vim.api.nvim_create_autocmd({"FileType"}, {
+    group    = augroup("disable_spell"),
+    pattern  = {"markdown"},
+    callback = function()
+        vim.opt_local.spell = false
+    end,
+})
