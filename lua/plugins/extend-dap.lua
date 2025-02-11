@@ -1,5 +1,4 @@
 return {
-    {import = "lazyvim.plugins.extras.dap.core"},
     {
         'jedrzejboczar/nvim-dap-cortex-debug',
         dependencies = {

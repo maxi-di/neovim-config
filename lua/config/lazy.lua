@@ -22,6 +22,22 @@ require("lazy").setup({
             import = "lazyvim.plugins",
             -- tag = "v14.1.0",
         },
+
+        {import = "lazyvim.plugins.extras.lang.json"},
+        {import = "lazyvim.plugins.extras.lang.clangd"},
+        {import = "lazyvim.plugins.extras.lang.cmake"},
+        {import = "lazyvim.plugins.extras.lang.docker"},
+        {import = "lazyvim.plugins.extras.lang.git"},
+        {import = "lazyvim.plugins.extras.lang.go"},
+        {import = "lazyvim.plugins.extras.lang.markdown"},
+        {import = "lazyvim.plugins.extras.lang.toml"},
+        {import = "lazyvim.plugins.extras.lang.yaml"},
+        {import = "lazyvim.plugins.extras.lang.python"},
+        {import = "lazyvim.plugins.extras.editor.dial"},
+        {import = "lazyvim.plugins.extras.coding.mini-surround"},
+        {import = "lazyvim.plugins.extras.coding.yanky"},
+        {import = "lazyvim.plugins.extras.dap.core"},
+
         -- import/override with your plugins
         {import = "plugins"},
     },
