@@ -1,0 +1,12 @@
+{
+    "ifndef_header": {
+        "prefix": "ifndef_header",
+        "body": [
+            "#ifndef __${1}_H__",
+            "#define __${1}_H__",
+            "",
+            "#endif // __${1}_H__"
+        ],
+        "description": "header pragma once c style"
+    }
+}
