@@ -27,3 +27,5 @@ vim.keymap.set("n", "<leader>su", function() Snacks.picker.undo() end, {desc = "
 
 vim.keymap.set("n", "<C-p>", LazyVim.pick("files", {root = false}), {desc = "Find Files (cwd)"})
 vim.keymap.set("n", "<leader>s/", LazyVim.pick("live_grep", {search_dirs = {"%:p"}}), {desc = "Find Files (cwd)"})
+
+vim.keymap.set("n", "<A-o>", "<cmd>ClangdSwitchSourceHeader<CR>", {desc = "Clang switch header/source file"})
