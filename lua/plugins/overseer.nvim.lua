@@ -41,15 +41,14 @@ return {
 
             opts = {
                 -- strategy = nil, -- "toggleterm"
-                -- strategy = "toggleterm",
+                -- strategy = {"toggleterm"},
             }
             return opts
         end,
         keys = {
-            {"<leader>rr", "<cmd>OverseerRun<cr>",             desc = "Run task"},
-            {"<leader>rl", "<cmd>OverseerRestartLast<cr>",     desc = "Restart last task"},
-            {"<leader>rt", "<cmd>OverseerToggle<cr>",          desc = "Show tasks output"},
-            {"<leader>rD", "<cmd>OverseerDisposeAllTasks<cr>", desc = "Dispose all tasks"},
+            {"<leader>ol", "<cmd>OverseerRestartLast<cr>",     desc = "Restart last task"},
+            {"<leader>oT", "<cmd>OverseerToggle<cr>",          desc = "Show tasks output"},
+            {"<leader>oD", "<cmd>OverseerDisposeAllTasks<cr>", desc = "Dispose all tasks"},
         }
     }
 }
