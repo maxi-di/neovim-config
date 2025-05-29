@@ -77,4 +77,19 @@ return {
             })
         end,
     },
+    {
+        "mfussenegger/nvim-lint",
+        opts = function()
+
+            -- Настройка docker
+            local hadolint = require("lint").linters.hadolint
+            if type(hadolint) == "table" then
+                -- DL3008 - исключаем "pin versions..."
+                -- DL3015 - исключаем "Avoid additional packages by specifying `--no-install-recommends`"
+                -- DL3059 - исключаем "Multiple consecutive `RUN` instructions. Consider consolidation"
+                vim.list_extend(hadolint.args, {"--ignore", "DL3008", "--ignore", "DL3015", "--ignore", "DL3059"})
+            end
+
+        end,
+    },
 }
