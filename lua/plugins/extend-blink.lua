@@ -5,6 +5,7 @@ return {
     },
     {
         "saghen/blink.cmp",
+        tag = "v1.3.1", -- remove later after LazyVim updates
         opts = {
             keymap = {
                 preset = "super-tab",
