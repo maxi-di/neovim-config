@@ -20,4 +20,5 @@ opt.tabstop    = 4 -- Number of spaces tabs count for
 -- плавная прокрутка на <C-d>/<C-u>
 vim.g.snacks_animate = false
 
-vim.g.lazyvim_picker = "telescope"
+-- vim.g.lazyvim_picker = "telescope"
+vim.g.lazyvim_picker = "fzf"

@@ -8,5 +8,12 @@
             "#endif // __${1}_H__"
         ],
         "description": "header pragma once c style"
+    },
+    "std_string": {
+        "prefix": "ss",
+        "body": [
+            "std::string"
+        ],
+        "description": "prints 'std::string'"
     }
 }

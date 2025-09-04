@@ -7,7 +7,7 @@ vim.keymap.set("n", "<leader>x,", "<cmd>Trouble telescope<cr>", {desc = "Trouble
 
 vim.keymap.set("n", "<leader>C", "<cmd>desc<cr>", {desc = "Close tab"})
 
-vim.keymap.set("n", "<leader>p", '"_ciw<esc>"*p', {desc = "Paste in word last yank"})
+vim.keymap.set("n", "<leader>p", '"_ciw<esc>"+p', {desc = "Paste in word last yank"})
 
 vim.keymap.set("n", "<leader>sp",
     function() vim.notify("cwd: " .. vim.loop.cwd()) end,
@@ -29,3 +29,6 @@ vim.keymap.set("n", "<C-p>", LazyVim.pick("files", {root = false}), {desc = "Fin
 vim.keymap.set("n", "<leader>s/", LazyVim.pick("live_grep", {search_dirs = {"%:p"}}), {desc = "Find Files (cwd)"})
 
 vim.keymap.set("n", "<A-o>", "<cmd>ClangdSwitchSourceHeader<CR>", {desc = "Clang switch header/source file"})
+
+-- vim.keymap.set("c", "<C-p>", "<Up>")
+-- vim.keymap.set("c", "<C-n>", "<Down>")
