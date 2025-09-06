@@ -40,6 +40,15 @@ vim.api.nvim_create_autocmd({"BufReadPost"}, {
     end,
 })
 
+vim.api.nvim_create_autocmd({"BufReadPost"}, {
+    group    = augroup("detect_html"),
+    pattern  = {"*.html"},
+    ---@diagnostic disable-next-line: unused-local
+    callback = function(event)
+        vim.cmd(string.format(":set filetype=html"))
+    end,
+})
+
 if LazyVim.has("neo-tree.nvim") then
     vim.api.nvim_create_autocmd({"TabEnter"}, {
         pattern  = '*',
