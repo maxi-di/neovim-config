@@ -1,0 +1,7 @@
+{
+  "important": {
+    "prefix": "imp",
+    "body": ["!important"],
+    "description": "place !important notice"
+  }
+}

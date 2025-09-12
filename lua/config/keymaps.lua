@@ -29,6 +29,3 @@ vim.keymap.set("n", "<C-p>", LazyVim.pick("files", {root = false}), {desc = "Fin
 vim.keymap.set("n", "<leader>s/", LazyVim.pick("live_grep", {search_dirs = {"%:p"}}), {desc = "Find Files (cwd)"})
 
 vim.keymap.set("n", "<A-o>", "<cmd>ClangdSwitchSourceHeader<CR>", {desc = "Clang switch header/source file"})
-
--- vim.keymap.set("c", "<C-p>", "<Up>")
--- vim.keymap.set("c", "<C-n>", "<Down>")
