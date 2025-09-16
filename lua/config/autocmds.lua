@@ -82,3 +82,16 @@ vim.api.nvim_create_autocmd({"FileType"}, {
         vim.opt_local.spell = false
     end,
 })
+
+-- TODO: сделать скрытие lf в терминале при скрытии терминала (иначе отображение его потом лагает)
+-- vim.api.nvim_create_autocmd({"BufHidden"}, {
+--     callback = function(event)
+--         local bufnr = event.buf
+--         local bt = vim.bo[bufnr].buftype
+--         if bt == "terminal" then
+--             vim.notify("terminal")
+--             local pid = vim.b[bufnr].terminal_job_pid
+--             vim.notify(pid)
+--         end
+--     end,
+-- })

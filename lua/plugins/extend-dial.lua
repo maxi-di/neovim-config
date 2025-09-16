@@ -33,6 +33,11 @@ return {
                     word = true,
                     cyclic = true,
                 },
+                augend.constant.new {
+                    elements = {"up", "down"},
+                    word = true,
+                    cyclic = true,
+                },
             }
         )
 
