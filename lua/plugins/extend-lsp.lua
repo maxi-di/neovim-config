@@ -20,25 +20,11 @@ return {
         "neovim/nvim-lspconfig",
         opts = {
             inlay_hints = {
-                enabled = false
+                enabled = false,
             },
             servers = {
                 -- Ensure mason installs the server
                 clangd = {
-                    root_dir = function(fname)
-                        return require("lspconfig.util").root_pattern(
-                            ".root",
-                            "Makefile",
-                            "configure.ac",
-                            "configure.in",
-                            "config.h.in",
-                            "meson.build",
-                            "meson_options.txt",
-                            "build.ninja"
-                        )(fname) or require("lspconfig.util").root_pattern("compile_commands.json", "compile_flags.txt")(
-                            fname
-                        ) or require("lspconfig.util").find_git_ancestor(fname)
-                    end,
                     cmd = {
                         "clangd",
                         "--background-index",
@@ -47,23 +33,22 @@ return {
                         "--completion-style=detailed",
                         "--function-arg-placeholders",
                         "--fallback-style=llvm",
-                        "--query-driver=/**/*", -- нужно для кросс компилятора, чтобы сам искал инклуды
-                    }
+                        -- с этим ключом стало падать
+                        -- "--query-driver=/**/*", -- нужно для кросс компилятора, чтобы сам искал инклуды
+                    },
                 },
                 neocmake = {
                     root_dir = function(fname)
-                        return require("lspconfig.util").root_pattern(
-                            ".root"
-                        )(fname) or require("lspconfig.util").find_git_ancestor(fname)
+                        return require("lspconfig.util").root_pattern(".root")(fname)
                     end,
                     init_options = {
                         lint = {
                             enable = false,
-                        }
+                        },
                     },
                 },
-            }
-        }
+            },
+        },
     },
     {
         "neovim/nvim-lspconfig",
@@ -73,23 +58,28 @@ return {
             end
             local keys = require("lazyvim.plugins.lsp.keymaps").get()
             vim.list_extend(keys, {
-                {"gd", function() require("telescope.builtin").lsp_definitions({reuse_win = false}) end, desc = "Goto Definition", has = "definition"},
+                {
+                    "gd",
+                    function()
+                        require("telescope.builtin").lsp_definitions({ reuse_win = false })
+                    end,
+                    desc = "Goto Definition",
+                    has = "definition",
+                },
             })
         end,
     },
     {
         "mfussenegger/nvim-lint",
         opts = function()
-
             -- Настройка docker
             local hadolint = require("lint").linters.hadolint
             if type(hadolint) == "table" then
                 -- DL3008 - исключаем "pin versions..."
                 -- DL3015 - исключаем "Avoid additional packages by specifying `--no-install-recommends`"
                 -- DL3059 - исключаем "Multiple consecutive `RUN` instructions. Consider consolidation"
-                vim.list_extend(hadolint.args, {"--ignore", "DL3008", "--ignore", "DL3015", "--ignore", "DL3059"})
+                vim.list_extend(hadolint.args, { "--ignore", "DL3008", "--ignore", "DL3015", "--ignore", "DL3059" })
             end
-
         end,
     },
 }

@@ -1,0 +1,28 @@
+{
+  "class": {
+    "prefix": "stimulusContoller",
+    "body": [
+      "import { Controller } from \"./stimulus.js\"",
+      "",
+      "export class ${1:} extends Controller {",
+      "    static targets = [\"myTarget\"]",
+      "    static instanceNumber = 0",
+      "",
+      "    initialize() {",
+      "        this.name = \"${1:}\"",
+      "        console.log(`\\${this.name}(\\${++${1:}.instanceNumber}): initialize`)",
+      "    }",
+      "",
+      "    connect() {",
+      "        console.log(`\\${this.name}(\\${${1:}.instanceNumber}): connect`)",
+      "        // access for 'myTarget': 'this.myTargetTarget'",
+      "    }",
+      "",
+      "    disconnect() {",
+      "        console.log(`\\${this.name}(\\${${1:}.instanceNumber}): disconnect`)",
+      "    }",
+      "}"
+    ],
+    "description": "dummy Stimulus.js contoller"
+  }
+}
