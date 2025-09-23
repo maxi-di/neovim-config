@@ -5,6 +5,8 @@ return {
             formatters_by_ft = {
                 -- чтобы не использовался stylua, а форматтер от lua_ls
                 lua = {},
+                -- html файлы с шаблонами внутри воспринимаются как htmldjango
+                htmldjango = {"prettier"},
             },
         },
     },
@@ -25,6 +27,20 @@ return {
             servers = {
                 -- Ensure mason installs the server
                 clangd = {
+                    root_markers = {
+                        ".root",
+                        "compile_commands.json",
+                        "compile_flags.txt",
+                        "configure.ac", -- AutoTools
+                        "Makefile",
+                        "configure.ac",
+                        "configure.in",
+                        "config.h.in",
+                        "meson.build",
+                        "meson_options.txt",
+                        "build.ninja",
+                        ".git",
+                    },
                     cmd = {
                         "clangd",
                         "--background-index",
@@ -60,9 +76,7 @@ return {
             vim.list_extend(keys, {
                 {
                     "gd",
-                    function()
-                        require("telescope.builtin").lsp_definitions({ reuse_win = false })
-                    end,
+                    function() require("telescope.builtin").lsp_definitions({reuse_win = false}) end,
                     desc = "Goto Definition",
                     has = "definition",
                 },
@@ -78,7 +92,7 @@ return {
                 -- DL3008 - исключаем "pin versions..."
                 -- DL3015 - исключаем "Avoid additional packages by specifying `--no-install-recommends`"
                 -- DL3059 - исключаем "Multiple consecutive `RUN` instructions. Consider consolidation"
-                vim.list_extend(hadolint.args, { "--ignore", "DL3008", "--ignore", "DL3015", "--ignore", "DL3059" })
+                vim.list_extend(hadolint.args, {"--ignore", "DL3008", "--ignore", "DL3015", "--ignore", "DL3059"})
             end
         end,
     },

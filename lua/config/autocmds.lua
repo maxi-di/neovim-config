@@ -9,8 +9,8 @@ local function augroup(name)
 end
 
 vim.api.nvim_create_autocmd({"BufReadPost"}, {
-    group    = augroup("koi8r"),
     pattern  = {"*"},
+    group    = augroup("koi8r"),
     callback = function(event)
         local s = vim.api.nvim_buf_get_lines(event.buf, 0, 1, true)[1]
         if s == nil then return end
@@ -18,7 +18,6 @@ vim.api.nvim_create_autocmd({"BufReadPost"}, {
         if encoding then
             vim.cmd(string.format(":e ++enc=%s", encoding))
         end
-        -- vim.notify(s)
     end,
 })
 
@@ -40,18 +39,9 @@ vim.api.nvim_create_autocmd({"BufReadPost"}, {
     end,
 })
 
-vim.api.nvim_create_autocmd({"BufReadPost"}, {
-    group    = augroup("detect_html"),
-    pattern  = {"*.html"},
-    ---@diagnostic disable-next-line: unused-local
-    callback = function(event)
-        vim.cmd(string.format(":set filetype=html"))
-    end,
-})
-
 if LazyVim.has("neo-tree.nvim") then
     vim.api.nvim_create_autocmd({"TabEnter"}, {
-        pattern  = '*',
+        pattern  = "*",
         ---@diagnostic disable-next-line: unused-local
         callback = function(event)
             if not package.loaded["neo-tree"] then
@@ -59,7 +49,7 @@ if LazyVim.has("neo-tree.nvim") then
             end
             local manager = require("neo-tree.sources.manager")
             if manager then
-                manager.refresh('filesystem')
+                manager.refresh("filesystem")
             end
         end,
     })
