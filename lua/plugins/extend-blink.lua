@@ -5,15 +5,14 @@ return {
     },
     {
         "saghen/blink.cmp",
-        tag = "v1.3.1", -- remove later after LazyVim updates
         opts = {
             keymap = {
                 preset = "super-tab",
-                ["<C-g>"] = {'show', 'show_documentation', 'hide_documentation'},
+                ["<C-g>"] = {"show", "show_documentation", "hide_documentation"},
             },
             completion = {
                 menu = {
-                    border = 'rounded',
+                    border = "rounded",
                     draw = {
                         -- We don't need label_description now because label and label_description are already
                         -- combined together in label by colorful-menu.nvim.
@@ -34,7 +33,7 @@ return {
                     selection = {
                         preselect = true,
                         auto_insert = true,
-                    }
+                    },
                 },
             },
             enabled = function()
