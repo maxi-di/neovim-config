@@ -73,6 +73,17 @@ vim.api.nvim_create_autocmd({"FileType"}, {
     end,
 })
 
+-- если в *.html файле вписаны шаблоны, то он воспринимается как htmldjango
+-- из-за этого плохо работает автозакрытие тегов
+vim.api.nvim_create_autocmd({"BufReadPost"}, {
+    group    = augroup("detect_html"),
+    pattern  = {"*.html"},
+    ---@diagnostic disable-next-line: unused-local
+    callback = function(event)
+        vim.cmd(string.format(":set filetype=html"))
+    end,
+})
+
 -- TODO: сделать скрытие lf в терминале при скрытии терминала (иначе отображение его потом лагает)
 -- vim.api.nvim_create_autocmd({"BufHidden"}, {
 --     callback = function(event)
