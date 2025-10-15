@@ -96,3 +96,15 @@ vim.api.nvim_create_autocmd({"BufReadPost"}, {
 --         end
 --     end,
 -- })
+
+vim.api.nvim_create_autocmd({"BufWritePost"}, {
+    pattern  = {"*.html", "*.css"},
+    callback = function(_)
+        vim.defer_fn(function()
+            if package.loaded["ccc"] then
+                vim.cmd("CccHighlighterDisable")
+                vim.cmd("CccHighlighterEnable")
+            end
+        end, 10)
+    end,
+})
