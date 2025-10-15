@@ -54,9 +54,9 @@ return {
                     },
                 },
                 neocmake = {
-                    root_dir = function(fname)
-                        return require("lspconfig.util").root_pattern(".root")(fname)
-                    end,
+                    -- root_dir = function(fname)
+                    --     return require("lspconfig.util").root_pattern(".root")(fname)
+                    -- end,
                     init_options = {
                         lint = {
                             enable = false,

@@ -38,6 +38,11 @@ return {
                     word = true,
                     cyclic = true,
                 },
+                augend.constant.new {
+                    elements = {"ON", "OFF"},
+                    word = true,
+                    cyclic = true,
+                },
             }
         )
 
@@ -89,11 +94,6 @@ return {
             {
                 augend.constant.new {
                     elements = {"PUBLIC", "PRIVATE"},
-                    word = true,
-                    cyclic = true,
-                },
-                augend.constant.new {
-                    elements = {"ON", "OFF"},
                     word = true,
                     cyclic = true,
                 },
