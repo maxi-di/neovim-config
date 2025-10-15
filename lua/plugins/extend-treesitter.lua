@@ -1,12 +1,5 @@
 return {
     "nvim-treesitter/nvim-treesitter",
-    -- opts = {
-    --     indent = {
-    --         disable = {
-    --             "yaml",
-    --         },
-    --     },
-    -- },
     opts = function(_, opts)
         opts.indent = {
             disable = {
@@ -17,7 +10,11 @@ return {
         vim.list_extend(opts.ensure_installed, {
             "tsx",
             "typescript",
-            "qmljs"
+            "qmljs",
+            "html",
+            "css",
+            "bash",
+            "javascript"
         })
     end,
 }
