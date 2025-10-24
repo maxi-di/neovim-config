@@ -2,6 +2,35 @@
 -- Default autocmds that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/autocmds.lua
 -- Add any additional autocmds here
 
+--- Возвращает список дочерних процессов с аргументами для данного PID
+---@param parent_pid number
+---@return table
+local function get_child_processes(parent_pid)
+    local result = {}
+    if not parent_pid then
+        return result
+    end
+
+    -- ps: выводим PID, команду и аргументы всех дочерних процессов
+    local cmd = string.format("ps --no-headers -o pid=,args= --ppid %d", parent_pid)
+    local handle = io.popen(cmd)
+    if not handle then
+        return result
+    end
+
+    for line in handle:lines() do
+        -- пример строки: "12345 top -b"
+        local pid, args = line:match("%s?(%d+)%s+(.*)$")
+        if pid and args then
+            table.insert(result, {pid = tonumber(pid), args = args})
+        end
+    end
+    handle:close()
+
+    return result
+end
+
+
 ---@param name string
 ---@return integer
 local function augroup(name)
@@ -84,18 +113,27 @@ vim.api.nvim_create_autocmd({"BufReadPost"}, {
     end,
 })
 
--- TODO: сделать скрытие lf в терминале при скрытии терминала (иначе отображение его потом лагает)
--- vim.api.nvim_create_autocmd({"BufHidden"}, {
---     callback = function(event)
---         local bufnr = event.buf
---         local bt = vim.bo[bufnr].buftype
---         if bt == "terminal" then
---             vim.notify("terminal")
---             local pid = vim.b[bufnr].terminal_job_pid
---             vim.notify(pid)
---         end
---     end,
--- })
+-- Перерисовать lf file manager (если он был открыт, то ломается интерфейс)
+vim.api.nvim_create_autocmd({"BufEnter"}, {
+    callback = function(event)
+        local bufnr = event.buf
+
+        local bt = vim.bo[bufnr].buftype
+        if bt ~= "terminal" then return end
+
+        local pid = vim.b[bufnr].terminal_job_pid
+        if not pid then return end
+
+        local children = get_child_processes(pid)
+
+        for _, value in ipairs(children) do
+            if value.args:match("lf %-last%-dir%-path") then
+                io.popen(string.format('lf -remote "send %d redraw"', value.pid))
+            end
+        end
+
+    end,
+})
 
 vim.api.nvim_create_autocmd({"BufWritePost"}, {
     pattern  = {"*.html", "*.css"},
