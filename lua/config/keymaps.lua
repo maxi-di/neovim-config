@@ -10,7 +10,7 @@ vim.keymap.set("n", "<leader>C", "<cmd>desc<cr>", {desc = "Close tab"})
 vim.keymap.set("n", "<leader>p", '"_ciw<esc>"+p', {desc = "Paste in word last yank"})
 
 vim.keymap.set("n", "<leader>sp",
-    function() vim.notify("cwd: " .. vim.loop.cwd()) end,
+    function() vim.notify("cwd: " .. vim.uv.cwd()) end,
     {desc = "Show current working directory"}
 )
 

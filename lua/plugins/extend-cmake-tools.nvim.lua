@@ -119,7 +119,7 @@ return {
             ---@return string? 'clean path'
             local function cmake_get_cache_file()
                 local cache_directory = vim.fn.expand("~") .. "/.cache/cmake_tools_nvim/"
-                local current_path = vim.loop.cwd() or ""
+                local current_path = vim.uv.cwd() or ""
                 local clean_path = current_path:gsub("/", "")
                 clean_path = clean_path:gsub("\\", "")
                 clean_path = clean_path:gsub(":", "")

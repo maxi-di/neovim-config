@@ -37,11 +37,18 @@ return {
                     elements = {"up", "down"},
                     word = true,
                     cyclic = true,
+                    preserve_case = true,
                 },
                 augend.constant.new {
                     elements = {"ON", "OFF"},
                     word = true,
                     cyclic = true,
+                },
+                augend.constant.new {
+                    elements = {"start", "stop"},
+                    word = true,
+                    cyclic = true,
+                    preserve_case = true,
                 },
             }
         )

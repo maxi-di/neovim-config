@@ -14,7 +14,13 @@ return {
             "html",
             "css",
             "bash",
-            "javascript"
+            "javascript",
+            "latex",
+            "norg",
+            "scss",
+            "svelte",
+            "typst",
+            "vue"
         })
     end,
 }

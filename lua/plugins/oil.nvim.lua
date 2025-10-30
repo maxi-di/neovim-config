@@ -8,7 +8,7 @@ return {
     keys = {
         {
             "<leader>O",
-            string.format("<cmd>Oil %s<cr>", vim.loop.cwd()),
+            string.format("<cmd>Oil %s<cr>", vim.uv.cwd()),
             desc = "Oil - interactive file manager"
         },
     },
