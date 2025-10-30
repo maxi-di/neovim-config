@@ -9,7 +9,7 @@ return {
 
             -- Или добавляем другие пакеты без stylua
             vim.list_extend(opts.ensure_installed, {
-                "htmx-lsp",
+                -- "htmx-lsp",
                 "typescript-language-server",
                 "vue-language-server",
                 -- другие пакеты
