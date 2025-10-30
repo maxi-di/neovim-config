@@ -10,6 +10,29 @@ return {
                 preset = "super-tab",
                 ["<C-g>"] = {"show", "show_documentation", "hide_documentation"},
             },
+            sources = {
+                providers = {
+                    lsp = {
+                        name = "LSP",
+                        module = 'blink.cmp.sources.lsp',
+
+                        -- Фильтрация и сортировка по LSP серверам
+                        transform_items = function(ctx, items)
+                            -- Задайте приоритет разным серверам
+                            local priority = {
+                                ['cssmodules_ls'] = 100,
+                            }
+
+                            for _, item in ipairs(items) do
+                                local client_name = item.client_name or ''
+                                item.score_offset = (item.score_offset or 0) + (priority[client_name] or 0)
+                            end
+
+                            return items
+                        end,
+                    },
+                },
+            },
             completion = {
                 menu = {
                     border = "rounded",
