@@ -2,6 +2,18 @@
 -- Default autocmds that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/autocmds.lua
 -- Add any additional autocmds here
 
+
+-- Загрузить все буферы из сессии
+-- Эта функция нужна, чтобы работали автодополнения Buffer из других буферов,
+-- которые мы не открывали при старте, по в сессии они открыты (если вручную в них не зашли)
+local function load_all_unloaded_buffers()
+    for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+        if vim.api.nvim_buf_is_valid(buf) and not vim.api.nvim_buf_is_loaded(buf) then
+            vim.fn.bufload(buf)
+        end
+    end
+end
+
 --- Возвращает список дочерних процессов с аргументами для данного PID
 ---@param parent_pid number
 ---@return table
@@ -91,8 +103,11 @@ vim.api.nvim_create_autocmd({"User"}, {
     callback = function()
         vim.cmd(":LspRestart")
         vim.notify("Lsp restarting (on cwd changed)")
+        load_all_unloaded_buffers()
     end,
 })
+
+vim.defer_fn(load_all_unloaded_buffers, 100)
 
 vim.api.nvim_create_autocmd({"FileType"}, {
     group    = augroup("disable_spell"),

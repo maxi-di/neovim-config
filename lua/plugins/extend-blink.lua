@@ -12,9 +12,22 @@ return {
             },
             sources = {
                 providers = {
+                    buffer = {
+                        name = "Buffer",
+                        module = 'blink.cmp.sources.buffer',
+
+                        -- Настройки поиска в буфере
+                        opts = {
+                            -- Искать во всех открытых буферах, а не только в текущем
+                            get_bufnrs = function() return vim.api.nvim_list_bufs() end,
+                        },
+                    },
                     lsp = {
                         name = "LSP",
                         module = 'blink.cmp.sources.lsp',
+
+                        -- Показывать подсказки из buffer в любом месте
+                        fallbacks = {},
 
                         -- Фильтрация и сортировка по LSP серверам
                         transform_items = function(ctx, items)
