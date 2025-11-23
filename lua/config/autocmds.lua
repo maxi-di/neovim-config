@@ -146,3 +146,19 @@ vim.api.nvim_create_autocmd({"BufWritePost"}, {
         end, 10)
     end,
 })
+
+
+-- transparent background
+if true then
+    vim.api.nvim_set_hl(0, "Normal", {bg = "none"})
+    vim.api.nvim_set_hl(0, "NormalFloat", {bg = "none"})
+    vim.api.nvim_set_hl(0, "NormalNC", {bg = "none"})
+
+    vim.api.nvim_create_autocmd("ColorScheme", {
+        pattern = "*",
+        callback = function()
+            vim.api.nvim_set_hl(0, "Normal", {bg = "none"})
+            vim.api.nvim_set_hl(0, "NormalFloat", {bg = "none"})
+        end,
+    })
+end
