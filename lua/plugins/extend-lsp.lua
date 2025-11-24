@@ -7,6 +7,12 @@ return {
                 lua = {},
                 -- html файлы с шаблонами внутри воспринимаются как htmldjango
                 htmldjango = {"prettier"},
+
+                -- command in shell: mbake
+                make = {"bake"},
+
+                zsh = {"shfmt"},
+                bash = {"shfmt"},
             },
         },
     },

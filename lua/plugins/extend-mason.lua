@@ -12,7 +12,8 @@ return {
                 -- "htmx-lsp",
                 "typescript-language-server",
                 "vue-language-server",
-                -- другие пакеты
+                "mbake",
+                "shfmt",
             })
         end,
     },

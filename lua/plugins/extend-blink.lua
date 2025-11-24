@@ -47,6 +47,10 @@ return {
                 },
             },
             completion = {
+                trigger = {
+                    -- нужно, когда в cpp коде печатаешь начало шаблона '<', без этого не предлагает lsp подсказки
+                    show_on_blocked_trigger_characters = {' ', '\n', '\t', '<'},
+                },
                 menu = {
                     border = "rounded",
                     draw = {
