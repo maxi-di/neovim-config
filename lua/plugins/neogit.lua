@@ -1,3 +1,12 @@
+local function neogit_in_current_cwd()
+    local neogit = require("neogit")
+    local file_dir = vim.fn.expand("%:h")
+    local exec_result = vim.system({"git", "rev-parse", "--show-toplevel"}, {text = true, cwd = file_dir})
+        :wait()
+    local root = vim.fn.trim(exec_result.stdout)
+    neogit.open({kind = "tab", cwd = root})
+end
+
 return {
     "NeogitOrg/neogit",
     dependencies = {
@@ -22,8 +31,8 @@ return {
         }
     },
     keys = {
-        {"<A-g>",     "<cmd>Neogit<cr>", desc = "Open neo-git"},
-        {"<leader>G", "<cmd>Neogit<cr>", desc = "Open neo-git"},
+        {"<A-g>",     neogit_in_current_cwd, desc = "Open neo-git"},
+        {"<leader>G", neogit_in_current_cwd, desc = "Open neo-git"},
     },
     config = true
 }

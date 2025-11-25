@@ -26,6 +26,29 @@ return {
                 table.insert(opts.sections.lualine_x, component)
             end
 
+            local function ins_left(component)
+                table.insert(opts.sections.lualine_c, component)
+            end
+
+            ins_left {
+                function()
+                    local function neogit_in_current_cwd()
+                        local file_dir = vim.fn.expand("%:h")
+                        local exec_result = vim.system({"git", "rev-parse", "--show-toplevel"},
+                                {text = true, cwd = file_dir})
+                            :wait()
+                        return vim.fs.basename(vim.fn.trim(exec_result.stdout))
+                    end
+                    return "  " .. neogit_in_current_cwd()
+                end,
+                cond = function()
+                    return "NeogitStatus" == vim.bo.filetype
+                end,
+                color = function()
+                    return {fg = Snacks.util.color("TSRainbowGreen")}
+                end,
+            }
+
             -- Add components to right sections
             ins_right {
                 "encoding", -- option component same as &encoding in viml
