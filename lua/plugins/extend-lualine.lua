@@ -30,19 +30,28 @@ return {
                 table.insert(opts.sections.lualine_c, component)
             end
 
+            local function neogit_in_current_cwd()
+                local file_dir = vim.fn.expand("%:h")
+                local exec_result = vim.system({"git", "rev-parse", "--show-toplevel"},
+                        {text = true, cwd = file_dir})
+                    :wait()
+                return vim.fs.basename(vim.fn.trim(exec_result.stdout))
+            end
+
+            local function is_submodule()
+                local file_dir = vim.fn.expand("%:h")
+                local exec_result = vim.system({"git", "rev-parse", "--show-superproject-working-tree"},
+                        {text = true, cwd = file_dir})
+                    :wait()
+                return vim.fn.trim(exec_result.stdout) ~= ""
+            end
+
             ins_left {
                 function()
-                    local function neogit_in_current_cwd()
-                        local file_dir = vim.fn.expand("%:h")
-                        local exec_result = vim.system({"git", "rev-parse", "--show-toplevel"},
-                                {text = true, cwd = file_dir})
-                            :wait()
-                        return vim.fs.basename(vim.fn.trim(exec_result.stdout))
-                    end
-                    return "  " .. neogit_in_current_cwd()
+                    return " " .. " (S) " .. neogit_in_current_cwd()
                 end,
                 cond = function()
-                    return "NeogitStatus" == vim.bo.filetype
+                    return "NeogitStatus" == vim.bo.filetype and is_submodule()
                 end,
                 color = function()
                     return {fg = Snacks.util.color("TSRainbowGreen")}
