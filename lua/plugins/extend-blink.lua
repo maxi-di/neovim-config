@@ -21,13 +21,16 @@ return {
                             -- Искать во всех открытых буферах, а не только в текущем
                             get_bufnrs = function() return vim.api.nvim_list_bufs() end,
                         },
+
+                        max_items = 10,
                     },
                     lsp = {
                         name = "LSP",
                         module = 'blink.cmp.sources.lsp',
 
                         -- Показывать подсказки из buffer в любом месте
-                        fallbacks = {},
+                        -- Но из-за этого этот buffer вылазиет везде и мешает
+                        -- fallbacks = {},
 
                         -- Фильтрация и сортировка по LSP серверам
                         transform_items = function(ctx, items)
