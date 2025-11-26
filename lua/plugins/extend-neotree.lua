@@ -15,7 +15,11 @@ return {
             {
                 "<leader>fn",
                 function()
-                    vim.cmd("Neotree reveal_force_cwd")
+                    -- с первого раза только разворачивает папку,
+                    -- но не фокусируется на конеретном файле
+                    local file_name = vim.fn.expand("%")
+                    vim.cmd("Neotree reveal_file=" .. file_name)
+                    vim.cmd("Neotree reveal_file=" .. file_name)
                 end,
                 desc = "Reveal current file"
             },

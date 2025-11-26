@@ -12,6 +12,7 @@ return {
             groups = {
                 cpp = {},
                 cmake = {},
+                lua = {},
             }
         }
         opts = vim.tbl_deep_extend("force", opts, new_opts)
@@ -101,6 +102,15 @@ return {
             {
                 augend.constant.new {
                     elements = {"PUBLIC", "PRIVATE"},
+                    word = true,
+                    cyclic = true,
+                },
+            }
+        )
+        vim.list_extend(opts.groups.lua,
+            {
+                augend.constant.new {
+                    elements = {"trace", "debug", "info", "warn", "error", "fatal"},
                     word = true,
                     cyclic = true,
                 },
