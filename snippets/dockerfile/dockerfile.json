@@ -1,0 +1,7 @@
+{
+  "apt-cache-remove": {
+    "prefix": "apt",
+    "body": ["RUN rm -rf /var/cache/apt/archives /var/lib/apt/lists/*"],
+    "description": "remove apt cache files"
+  }
+}

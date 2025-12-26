@@ -19,7 +19,9 @@ return {
                     -- но не фокусируется на конеретном файле
                     local file_name = vim.fn.expand("%")
                     vim.cmd("Neotree reveal_file=" .. file_name)
-                    vim.cmd("Neotree reveal_file=" .. file_name)
+                    vim.loop.new_timer():start(100, 0, vim.schedule_wrap(function()
+                        vim.cmd("Neotree reveal_file=" .. file_name)
+                    end))
                 end,
                 desc = "Reveal current file"
             },

@@ -16,7 +16,7 @@ end
 
 --- Возвращает список дочерних процессов с аргументами для данного PID
 ---@param parent_pid number
----@return table
+---@return {pid:number, args:string}[]
 local function get_child_processes(parent_pid)
     local result = {}
     if not parent_pid then

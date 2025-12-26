@@ -14,6 +14,7 @@ return {
                 "vue-language-server",
                 "mbake",
                 "shfmt",
+                "tinymist",
             })
         end,
     },

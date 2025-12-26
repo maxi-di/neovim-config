@@ -25,6 +25,7 @@ return {
             }
             vim.api.nvim_set_hl(0, 'NeoTreeDirectoryName', {link = "GruvboxGreenBold"})
             vim.api.nvim_set_hl(0, 'SnippetTabstop', {link = "GruvboxGreenBold"})
+            vim.api.nvim_set_hl(0, 'BufferLineBufferSelected', {link = "GruvboxOrangeBold"})
         end
     },
     {

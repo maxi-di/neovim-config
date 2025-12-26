@@ -16,7 +16,7 @@ vim.opt.wrap   = true
 -- чтобы не появлялось окно 'no name' при открытии nvim
 -- из-за этой опции если буфер уже загружен и я его открываю через, например telescope
 -- то курсор всегда переходит в начало файла, неудобно
--- vim.cmd("set nohidden")
+vim.cmd("set nohidden")
 
 -- плавная прокрутка на <C-d>/<C-u>
 vim.g.snacks_animate = false
