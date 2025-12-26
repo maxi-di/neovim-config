@@ -1,12 +1,5 @@
 return {
     {
-        'morhetz/gruvbox',
-        enabled = false,
-        config = function()
-            vim.g.gruvbox_contrast_dark = "soft"
-        end,
-    },
-    {
         'ellisonleao/gruvbox.nvim',
         enabled = true,
         opts = function(_, opts)
@@ -23,9 +16,28 @@ return {
                 LspReferenceWrite = {fg = p.light0, bg = p.faded_green, reverse = config.invert_signs},
                 DiffText          = {bg = p.faded_yellow, fg = p.dark0},
             }
+
+            if vim.g.colors_name ~= "gruvbox" then return end
+
             vim.api.nvim_set_hl(0, 'NeoTreeDirectoryName', {link = "GruvboxGreenBold"})
             vim.api.nvim_set_hl(0, 'SnippetTabstop', {link = "GruvboxGreenBold"})
             vim.api.nvim_set_hl(0, 'BufferLineBufferSelected', {link = "GruvboxOrangeBold"})
+
+            -- transparent background
+            if true then
+                vim.api.nvim_set_hl(0, "Normal", {bg = "none"})
+                vim.api.nvim_set_hl(0, "NormalFloat", {bg = "none"})
+                vim.api.nvim_set_hl(0, "NormalNC", {bg = "none"})
+
+                vim.api.nvim_create_autocmd("ColorScheme", {
+                    pattern = "*",
+                    callback = function()
+                        vim.api.nvim_set_hl(0, "Normal", {bg = "none"})
+                        vim.api.nvim_set_hl(0, "NormalFloat", {bg = "none"})
+                    end,
+                })
+            end
+
         end
     },
     {
@@ -43,6 +55,11 @@ return {
     {
         'romainl/Apprentice',
         enabled = true,
+    },
+    {
+        'projekt0n/github-nvim-theme',
+        name   = 'github-theme',
+        config = true,
     },
 
     -- Configure LazyVim to load colorscheme
