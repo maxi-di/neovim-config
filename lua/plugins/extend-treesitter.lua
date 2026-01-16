@@ -16,7 +16,6 @@ return {
             "bash",
             "javascript",
             "latex",
-            "norg",
             "scss",
             "svelte",
             "typst",
