@@ -19,6 +19,7 @@ return {
         opts = {
             linters_by_ft = {
                 markdown = {},
+                css = {"stylelint"}
             },
         },
     },
@@ -67,6 +68,27 @@ return {
                         },
                     },
                 },
+                cssls = {
+                    settings = {
+                        -- в css modules этот ls не знает конструкцию composes: ...
+                        -- пускай он не ругается на незнакомые слова
+                        css = {
+                            lint = {
+                                unknownProperties = "ignore"
+                            }
+                        },
+                        scss = {
+                            lint = {
+                                unknownProperties = "ignore"
+                            }
+                        },
+                        less = {
+                            lint = {
+                                unknownProperties = "ignore"
+                            }
+                        }
+                    }
+                }
             },
         },
     },
