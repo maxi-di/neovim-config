@@ -3,5 +3,19 @@
     "prefix": "apt",
     "body": ["RUN rm -rf /var/cache/apt/archives /var/lib/apt/lists/*"],
     "description": "remove apt cache files"
+  },
+  "label-custom1": {
+    "prefix": "org",
+    "body": ["org.opencontainers.image.custom.${1:}=\"${2:}\""],
+    "description": "custom label in OCI format"
+  },
+  "label-custom2": {
+    "prefix": "lab",
+    "body": [
+      "LABEL \\",
+      "    org.opencontainers.image.custom.title=\"${1:}\" \\",
+      "    org.opencontainers.image.custom.description=\"${2:}\""
+    ],
+    "description": "custom label in OCI format"
   }
 }

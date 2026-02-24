@@ -8,11 +8,13 @@ return {
             dials_by_ft = {
                 cpp = "cpp",
                 cmake = "cmake",
+                yaml = "yaml",
             },
             groups = {
                 cpp = {},
                 cmake = {},
                 lua = {},
+                yaml = {},
             }
         }
         opts = vim.tbl_deep_extend("force", opts, new_opts)
@@ -108,6 +110,15 @@ return {
             }
         )
         vim.list_extend(opts.groups.lua,
+            {
+                augend.constant.new {
+                    elements = {"trace", "debug", "info", "warn", "error", "fatal"},
+                    word = true,
+                    cyclic = true,
+                },
+            }
+        )
+        vim.list_extend(opts.groups.yaml,
             {
                 augend.constant.new {
                     elements = {"trace", "debug", "info", "warn", "error", "fatal"},

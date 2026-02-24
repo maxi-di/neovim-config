@@ -1,0 +1,6 @@
+{
+  "className": {
+    "prefix": "cn",
+    "body": ["className={styles.${1:}}"]
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "help-generic": {
+    "prefix": "help",
+    "body": [
+      ".PHONY: help",
+      "help:",
+      "\t@awk 'BEGIN {FS = \":.*##\"} \/^[a-zA-Z0-9_.-]+:.*##/ {printf \"%-30s -> %s\\n\", \\$\\$1, \\$\\$2}' \\$(MAKEFILE_LIST)\n"
+    ]
+  },
+  "help-generic-colored": {
+    "prefix": "help",
+    "body": [
+      ".PHONY: help",
+      "help:",
+      "\t@cat \\$(MAKEFILE_LIST) | grep -E '^[a-zA-Z0-9_.-]+:.*##.*' | awk 'BEGIN {FS = \":.*?##\"}; {printf \"\\033[36m%-30s\\033[0m -> %s\\n\", \\$\\$1, \\$\\$2}'\n"
+    ]
+  }
+}
