@@ -18,6 +18,11 @@ require("lazy").setup({
     ui = {
         border = "rounded",
     },
+
+    -- Обновление плагинов на рабочем ПК (наличие файла '~/.slow-pc') будет происходить в 4 потока
+    -- это значит что только 4 одновременных git fetch будут исполняться
+    concurrency = vim.uv.fs_stat(vim.fn.expand("~/.slow-pc")) and 4 or nil,
+
     spec = {
         -- add LazyVim and import its plugins
         {
