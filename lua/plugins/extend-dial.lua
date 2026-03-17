@@ -53,6 +53,24 @@ return {
                     cyclic = true,
                     preserve_case = true,
                 },
+                augend.constant.new {
+                    elements = {"выкл", "вкл"},
+                    word = true,
+                    cyclic = true,
+                    preserve_case = false,
+                },
+                augend.constant.new {
+                    elements = {"ВЫКЛ", "ВКЛ"},
+                    word = true,
+                    cyclic = true,
+                    preserve_case = false,
+                },
+                augend.constant.new {
+                    elements = {"Выкл", "Вкл"},
+                    word = true,
+                    cyclic = true,
+                    preserve_case = false,
+                },
             }
         )
 

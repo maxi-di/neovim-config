@@ -70,7 +70,7 @@ return {
                 },
                 cssls = {
                     settings = {
-                        -- в css modules этот ls не знает конструкцию composes: ...
+                        -- в css modules этот lsp не знает конструкцию composes: ...
                         -- пускай он не ругается на незнакомые слова
                         css = {
                             lint = {
@@ -93,26 +93,9 @@ return {
         },
     },
     {
-        "neovim/nvim-lspconfig",
-        opts = function()
-            if vim.g.lazyvim_picker ~= "telescope" then
-                return
-            end
-            local keys = require("lazyvim.plugins.lsp.keymaps").get()
-            vim.list_extend(keys, {
-                {
-                    "gd",
-                    function() require("telescope.builtin").lsp_definitions({reuse_win = false}) end,
-                    desc = "Goto Definition",
-                    has = "definition",
-                },
-            })
-        end,
-    },
-    {
         "mfussenegger/nvim-lint",
         opts = function()
-            -- Настройка docker
+            -- Настройка docker lsp
             local hadolint = require("lint").linters.hadolint
             if type(hadolint) == "table" then
                 -- DL3008 - исключаем "pin versions..."

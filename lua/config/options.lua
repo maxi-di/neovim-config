@@ -7,7 +7,13 @@ local opt = vim.opt
 
 opt.shiftwidth = 4 -- Size of an indent
 opt.tabstop    = 4 -- Number of spaces tabs count for
-vim.opt.wrap   = true
+opt.wrap       = true
+
+-- когда отображаешь файл в режиме diff, то удаленные места по умолчанию
+-- отображались плиткой из символов `/`, это сильно режет глаза
+opt.fillchars  = {
+    diff = " ",
+}
 
 -- чтобы при нажатии <w> курсор не останавливался на символе "-" в середине слова
 -- opt.iskeyword:append("-")
@@ -23,3 +29,7 @@ vim.g.snacks_animate = false
 
 -- vim.g.lazyvim_picker = "telescope"
 vim.g.lazyvim_picker = "fzf"
+
+-- "saghen/blink.cmp" - использовать самую свежую версию из main ветки
+-- FIXME: убрать в false 1 июня 2026
+vim.g.lazyvim_blink_main = true
