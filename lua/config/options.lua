@@ -32,4 +32,4 @@ vim.g.lazyvim_picker = "fzf"
 
 -- "saghen/blink.cmp" - использовать самую свежую версию из main ветки
 -- FIXME: убрать в false 1 июня 2026
-vim.g.lazyvim_blink_main = true
+vim.g.lazyvim_blink_main = false

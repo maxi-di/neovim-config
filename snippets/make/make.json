@@ -1,6 +1,7 @@
 {
   "help-generic": {
     "prefix": "help",
+    "description": "max: prints help",
     "body": [
       ".PHONY: help",
       "help:",
@@ -8,7 +9,8 @@
     ]
   },
   "help-generic-colored": {
-    "prefix": "help",
+    "prefix": "help1",
+    "description": "max: prints help with colored output",
     "body": [
       ".PHONY: help",
       "help:",
