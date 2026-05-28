@@ -88,7 +88,25 @@ return {
                             }
                         }
                     }
-                }
+                },
+                gopls = {
+                    settings = {
+                        gopls = {
+                            -- Была ошибка 22.05.2026 - ругается lsp
+                            semanticTokens = true,
+                        },
+                    },
+                },
+            },
+            setup = {
+
+                -- Была ошибка 22.05.2026 - ругается lsp
+                gopls = function(_, opts)
+                    -- Override LazyVim's gopls handler to guard against nil semantic tokens
+                    local lspconfig = require("lspconfig")
+                    lspconfig.gopls.setup(opts)
+                    return true -- prevent LazyVim from running its own setup
+                end,
             },
         },
     },
