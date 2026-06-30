@@ -16,8 +16,9 @@ opt.fillchars  = {
 }
 
 -- чтобы при нажатии <w> курсор не останавливался на символе "-" в середине слова
--- opt.iskeyword:append("-")
+opt.iskeyword:append("-")
 
+vim.cmd(":set diffopt+=vertical")
 
 -- чтобы не появлялось окно 'no name' при открытии nvim
 -- из-за этой опции если буфер уже загружен и я его открываю через, например telescope

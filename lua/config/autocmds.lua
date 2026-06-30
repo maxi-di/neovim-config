@@ -71,6 +71,15 @@ vim.api.nvim_create_autocmd({"BufRead"}, {
     end,
 })
 
+vim.api.nvim_create_autocmd({"BufRead"}, {
+    group    = augroup("base_to_yaml"),
+    pattern  = {"*.base"},
+    ---@diagnostic disable-next-line: unused-local
+    callback = function(event)
+        vim.cmd(string.format(":set filetype=yaml"))
+    end,
+})
+
 vim.api.nvim_create_autocmd({"BufReadPost"}, {
     group    = augroup("detect_dockerfile"),
     pattern  = {"Dockerfile*"},

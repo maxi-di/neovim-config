@@ -20,6 +20,7 @@ return {
                 "tinymist",
                 "css-lsp",
                 "stylelint", -- для css показывать ошибки
+                "bash-language-server",
             })
 
         end,
