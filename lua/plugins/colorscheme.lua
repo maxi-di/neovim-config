@@ -27,7 +27,7 @@ return {
                     vim.api.nvim_set_hl(0, 'BufferLineBufferSelected', {link = "GruvboxOrangeBold"})
 
                     vim.api.nvim_set_hl(0, "NeogitDiffAddInline", {fg = "#44cf26", bg = "#565756"})
-                    vim.api.nvim_set_hl(0, "NeogitDiffDeleteInline", {fg = "#fb3118", bg = "#565756"})
+                    vim.api.nvim_set_hl(0, "NeogitDiffDeleteInline", {fg = "#33000f", bg = "#fb4934"})
                     vim.api.nvim_set_hl(0, "NeogitDiffDeleteCursor", {fg = "#fb4934", bg = "#83000f"})
                     vim.api.nvim_set_hl(0, "NeogitDiffDeleteHighlight", {fg = "#fb4934", bg = "#93000f"})
 
