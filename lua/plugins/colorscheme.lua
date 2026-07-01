@@ -22,6 +22,8 @@ return {
             vim.api.nvim_set_hl(0, 'NeoTreeDirectoryName', {link = "GruvboxGreenBold"})
             vim.api.nvim_set_hl(0, 'SnippetTabstop', {link = "GruvboxGreenBold"})
             vim.api.nvim_set_hl(0, 'BufferLineBufferSelected', {link = "GruvboxOrangeBold"})
+            vim.api.nvim_set_hl(0, "NeogitDiffAddHighlight", {fg = "#b8bb26", bg = "#3c3836"})
+            vim.api.nvim_set_hl(0, "NeogitDiffDeleteHighlight", {fg = "#fb4934", bg = "#3c3836"})
 
             -- transparent background
             if true then

@@ -29,7 +29,7 @@ require("lazy").setup({
             "LazyVim/LazyVim",
             import = "lazyvim.plugins",
             opts = {
-                colorscheme = "github_dark_dimmed",
+                colorscheme = "gruvbox",
             },
             -- tag = "v14.1.0",
         },
