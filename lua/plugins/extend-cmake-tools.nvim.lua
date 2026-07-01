@@ -170,6 +170,125 @@ return {
                 end))
             end
 
+            local function qt_generage_compile_commands()
+                local pro_file = vim.fn.expand("%:p")
+                if vim.fn.fnamemodify(pro_file, ":e") ~= "pro" then
+                    vim.notify("Текущий файл не .pro", vim.log.levels.ERROR)
+                    return
+                end
+
+                if vim.fn.executable("compiledb") == 0 then
+                    vim.notify(
+                        "compiledb не найден. Установка:\n"
+                        .. "  pip install compiledb --break-system-packages\n"
+                        .. "(нужен python3-pip: sudo apt install python3-pip)",
+                        vim.log.levels.ERROR
+                    )
+                    return
+                end
+
+                local pro_dir = vim.fn.fnamemodify(pro_file, ":h")
+                local build_dir = pro_dir .. "/build_qt"
+
+                vim.fn.mkdir(build_dir, "p")
+                vim.notify("Генерация compile_commands.json...", vim.log.levels.INFO)
+
+                local qmake_cmd = string.format(
+                    "cd %s && qmake %s",
+                    vim.fn.shellescape(build_dir),
+                    vim.fn.shellescape(pro_file)
+                )
+
+                vim.fn.jobstart(qmake_cmd, {
+                    on_exit = function(_, code)
+                        if code ~= 0 then
+                            vim.notify("Ошибка qmake (код " .. code .. ")", vim.log.levels.ERROR)
+                            return
+                        end
+
+                        -- ищем все Makefile* в build_dir, включая поддиректории (subdirs-проект)
+                        local makefiles = vim.fn.systemlist(
+                            string.format(
+                                "find %s -maxdepth 3 -type f \\( -name 'Makefile' -o -name 'Makefile*' \\)",
+                                vim.fn.shellescape(build_dir)
+                            )
+                        )
+
+                        if #makefiles == 0 then
+                            vim.notify("Makefile не найден после qmake в " .. build_dir, vim.log.levels.ERROR)
+                            return
+                        end
+
+                        -- приоритет: обычный Makefile, иначе Makefile.Debug, иначе первый попавшийся
+                        local makefile
+                        for _, f in ipairs(makefiles) do
+                            if vim.fn.fnamemodify(f, ":t") == "Makefile" then
+                                makefile = f
+                                break
+                            end
+                        end
+                        if not makefile then
+                            for _, f in ipairs(makefiles) do
+                                if f:match("Makefile%.Debug$") then
+                                    makefile = f
+                                    break
+                                end
+                            end
+                        end
+                        makefile = makefile or makefiles[1]
+
+                        local mk_dir = vim.fn.fnamemodify(makefile, ":h")
+                        local mk_name = vim.fn.fnamemodify(makefile, ":t")
+
+                        vim.notify("Используется " .. makefile, vim.log.levels.INFO)
+
+                        local compiledb_cmd = string.format(
+                            "cd %s && compiledb -n make -f %s -B",
+                            vim.fn.shellescape(mk_dir),
+                            vim.fn.shellescape(mk_name)
+                        )
+
+                        vim.fn.jobstart(compiledb_cmd, {
+                            stderr_buffered = true,
+                            on_exit = function(_, ccode)
+                                if ccode ~= 0 then
+                                    vim.notify("Ошибка compiledb (код " .. ccode .. ")", vim.log.levels.ERROR)
+                                    return
+                                end
+
+                                local src = mk_dir .. "/compile_commands.json"
+                                local dst = pro_dir .. "/compile_commands.json"
+
+                                if vim.fn.filereadable(src) == 0 then
+                                    vim.notify("compile_commands.json не создан в " .. mk_dir, vim.log.levels.ERROR)
+                                    return
+                                end
+
+                                if vim.fn.getftype(dst) == "link" or vim.fn.filereadable(dst) == 1 then
+                                    vim.fn.delete(dst)
+                                end
+
+                                vim.loop.fs_symlink(src, dst, function(err)
+                                    vim.schedule(function()
+                                        if err then
+                                            vim.notify("Не удалось создать симлинк: " .. err, vim.log.levels.ERROR)
+                                        else
+                                            vim.notify("compile_commands.json готов: " .. dst, vim.log.levels.INFO)
+                                        end
+                                    end)
+                                end)
+                            end,
+                            on_stderr = function(_, data)
+                                local msg = table.concat(data, "\n")
+                                if msg:match("%S") then
+                                    vim.notify(msg, vim.log.levels.WARN)
+                                end
+                            end,
+                        })
+                    end,
+                })
+            end
+
             vim.api.nvim_create_user_command("CMakeDeleteBuildDir", function() cmake_delete_build_dir(false) end, {
                 nargs = 0,
                 desc = "Delete Cmake Build Dir"
@@ -179,6 +298,12 @@ return {
                 nargs = 0,
                 desc = "Delete Cmake Cache File"
             })
+
+            vim.api.nvim_create_user_command("QTGenerageCompileCommands", function() qt_generage_compile_commands() end,
+                {
+                    nargs = 0,
+                    desc = "QT generate compile commands from *.pro file"
+                })
 
 
             vim.keymap.set("n", "<leader>zsb", '<cmd>CMakeSelectBuildType<cr>', {desc = "Cmake select build type"})
@@ -202,7 +327,8 @@ return {
                 end,
                 {desc = "Cmake prune plugin (delete cache's and reload)"})
             vim.keymap.set("n", "<F7>", '<cmd>CMakeBuild<cr>', {desc = "Cmake build"})
-
+            vim.keymap.set("n", "<leader>zq", '<cmd>QTGenerageCompileCommands<cr>',
+                {desc = "QT compile_commands.json from *.pro"})
 
             -- событие от плагина `neovim-session-manager.nvim`
             vim.api.nvim_create_autocmd({"User"}, {
