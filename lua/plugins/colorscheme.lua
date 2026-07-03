@@ -26,10 +26,19 @@ return {
                     vim.api.nvim_set_hl(0, 'SnippetTabstop', {link = "GruvboxGreenBold"})
                     vim.api.nvim_set_hl(0, 'BufferLineBufferSelected', {link = "GruvboxOrangeBold"})
 
-                    vim.api.nvim_set_hl(0, "NeogitDiffAddInline", {fg = "#44cf26", bg = "#565756"})
-                    vim.api.nvim_set_hl(0, "NeogitDiffDeleteInline", {fg = "#33000f", bg = "#fb4934"})
-                    vim.api.nvim_set_hl(0, "NeogitDiffDeleteCursor", {fg = "#fb4934", bg = "#83000f"})
-                    vim.api.nvim_set_hl(0, "NeogitDiffDeleteHighlight", {fg = "#fb4934", bg = "#93000f"})
+                    -- vim.api.nvim_set_hl(0, "NeogitDiffAddInline", {fg = "#44cf26", bg = "#565756"})
+                    -- vim.api.nvim_set_hl(0, "NeogitDiffDeleteInline", {fg = "#33000f", bg = "#fb4934"})
+                    -- vim.api.nvim_set_hl(0, "NeogitDiffDeleteCursor", {fg = "#fb4934", bg = "#83000f"})
+                    -- vim.api.nvim_set_hl(0, "NeogitDiffDeleteHighlight", {fg = "#fb4934", bg = "#93000f"})
+
+                    vim.api.nvim_set_hl(0, "NeogitDiffDeleteHighlight", {fg = "#fb4934"})
+                    vim.api.nvim_set_hl(0, "NeogitDiffDeleteInline", {fg = "#fb7974"})
+                    vim.api.nvim_set_hl(0, "NeogitDiffDeleteCursor", {fg = "#fbf2f4"})
+                    vim.api.nvim_set_hl(0, "NeogitDiffAddInline", {fg = "#44cf26"})
+
+                    -- vim.api.nvim_set_hl(0, "NeogitChangeDelete", {fg = "#fb4934"})
+                    vim.api.nvim_set_hl(0, "NeogitChangeDeleted", {fg = "#fb4934"})
+                    -- vim.api.nvim_set_hl(0, "NeogitChangeDeletions", {fg = "#fb4934"})
 
                     -- transparent background
                     if transparent_mode then
