@@ -2,15 +2,6 @@
 return {
     {
         "uga-rosa/ccc.nvim",
-        dependencies = {
-            {
-                "folke/which-key.nvim",
-                opts = {
-                    defaults = {},
-                    spec = {{{"<leader>C", group = "Color picker"},}}
-                }
-            },
-        },
         opts = function(_, opts)
             opts = {
                 highlighter = {

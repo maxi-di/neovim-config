@@ -7,8 +7,12 @@ return {
                 {
                     mode = {"n", "v"},
                     {"<leader>h", group = "git hunk actions"},
-                }
-            }
-        }
-    }
+                },
+                {
+                    mode = {"n", "v"},
+                    {"<leader>C", group = "Color picker, sync-conflicts"}
+                },
+            },
+        },
+    },
 }
