@@ -110,8 +110,10 @@ vim.api.nvim_create_autocmd({"User"}, {
     pattern  = "SessionLoadPost",
     group    = augroup("lsp_restart"),
     callback = function()
-        vim.cmd(":LspRestart")
-        vim.notify("Lsp restarting (on cwd changed)")
+        if #vim.lsp.get_clients() ~= 0 then
+            vim.cmd(":lsp restart")
+            vim.notify("Lsp restarting (on cwd changed)")
+        end
         load_all_unloaded_buffers()
     end,
 })
