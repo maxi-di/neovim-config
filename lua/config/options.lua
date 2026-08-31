@@ -32,6 +32,9 @@ vim.g.snacks_animate = false
 -- vim.g.lazyvim_picker = "telescope"
 vim.g.lazyvim_picker = "fzf"
 
-vim.g.autoformat = false
+vim.g.autoformat = true
 
-opt.clipboard = "" -- отключаем автосинхронизацию
+-- если копирование тормозит, то раскомментировать
+-- opt.clipboard = "" -- отключаем автосинхронизацию
+
+vim.o.winborder = "rounded"
