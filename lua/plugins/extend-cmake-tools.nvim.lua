@@ -307,8 +307,10 @@ return {
 
 
             vim.keymap.set("n", "<leader>zsb", '<cmd>CMakeSelectBuildType<cr>', {desc = "Cmake select build type"})
+            vim.keymap.set("n", "<leader>zsp", '<cmd>CMakeSelectConfigurePreset<cr>', {desc = "Cmake configure preset"})
             vim.keymap.set("n", "<leader>zsc", '<cmd>CMakeSelectCwd<cr>', {desc = "Cmake select cwd"})
             vim.keymap.set("n", "<leader>zb", '<cmd>CMakeBuild<cr>', {desc = "Cmake build"})
+            vim.keymap.set("n", "<leader>zi", '<cmd>CMakeInstall<cr>', {desc = "Cmake install"})
             vim.keymap.set("n", "<leader>zg", '<cmd>CMakeGenerate<cr>', {desc = "Cmake generate"})
             vim.keymap.set("n", "<leader>zoe", '<cmd>CMakeOpenExecutor<cr>', {desc = "Cmake open executor"})
             vim.keymap.set("n", "<leader>zor", '<cmd>CMakeOpenRunner<cr>', {desc = "Cmake open runner"})
