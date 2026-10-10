@@ -55,6 +55,20 @@ return {
                 },
             },
             completion = {
+                accept = {
+                    auto_brackets = {
+                        enabled = true,
+                        semantic_token_resolution = {
+                            enabled = true,
+                            -- tr.p.veryLongParameterName = NewPdu()
+                            -- если поставить курсор на Name и нажать tab (автодополнение)
+                            -- то вставлялось veryLongParameterName(), со скобками
+                            blocked_filetypes = {'go'},
+                            -- How long to wait for semantic tokens to return before assuming no brackets should be added
+                            timeout_ms = 400,
+                        },
+                    },
+                },
                 trigger = {
                     -- нужно, когда в cpp коде печатаешь начало шаблона '<', без этого не предлагает lsp подсказки
                     show_on_blocked_trigger_characters = {' ', '\n', '\t', '<'},
